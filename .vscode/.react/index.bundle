@@ -111705,7 +111705,10 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _reactNative = _$$_REQUIRE(_dependencyMap[9], "react-native");
 
-  var _jsxFileName = "/Users/apple/Desktop/ReactNative/demoApp/src/home/Home.js";
+  var _class,
+      _temp,
+      _jsxFileName = "/Users/apple/Desktop/ReactNative/demoApp/src/home/Home.js";
+
   var _components = {
     Home: {
       displayName: "Home"
@@ -111725,7 +111728,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     };
   }
 
-  var Home = _wrapComponent("Home")(function (_Component) {
+  var Home = _wrapComponent("Home")((_temp = _class = function (_Component) {
     (0, _inherits2.default)(Home, _Component);
 
     function Home(props) {
@@ -111733,31 +111736,88 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
       (0, _classCallCheck2.default)(this, Home);
       _this = (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(Home).call(this, props));
-      _this.state = {};
+
+      _this.itemClick = function () {
+        console.log('kkkk');
+      };
+
+      _this.state = {
+        data: ['待审核客户', '信控审核', '信控额度审核', '应收账款', '风控预警']
+      };
       return _this;
     }
 
     (0, _createClass2.default)(Home, [{
+      key: "renderItem",
+      value: function renderItem(_ref) {
+        var _this2 = this;
+
+        var item = _ref.item;
+        return _react.default.createElement(_reactNative.TouchableHighlight, {
+          style: styles.item,
+          onPress: function onPress() {
+            return _this2.itemClick;
+          },
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 24
+          }
+        }, _react.default.createElement(_reactNative.Text, {
+          style: styles.itmeText,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 25
+          }
+        }, item));
+      }
+    }, {
       key: "render",
       value: function render() {
         return _react.default.createElement(_reactNative.View, {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 13
+            lineNumber: 34
           }
-        }, _react.default.createElement(_reactNative.Text, {
+        }, _react.default.createElement(_reactNative.FlatList, {
+          data: this.state.data,
+          renderItem: this.renderItem,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 14
+            lineNumber: 35
           }
-        }, " Home "));
+        }));
       }
     }]);
     return Home;
-  }(_react.Component));
+  }(_react.Component), _class.navigationOptions = {
+    headerTitle: '首页'
+  }, _temp));
 
   var _default2 = Home;
   exports.default = _default2;
+
+  var styles = _reactNative.StyleSheet.create({
+    item: {
+      height: 80,
+      marginLeft: 20,
+      marginRight: 20,
+      backgroundColor: '#48d1cc',
+      marginBottom: 5,
+      marginTop: 5,
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderRadius: 10
+    },
+    itmeText: {
+      fontSize: 24,
+      color: '#fffafa',
+      fontWeight: '600',
+      lineHeight: 80
+    },
+    itemClick: {
+      flex: 1
+    }
+  });
 },703,[1,568,22,23,36,39,42,53,196,2],"src/home/Home.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
