@@ -7,11 +7,12 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {Platform, StyleSheet, Text, View,Image} from 'react-native';
 import { createStackNavigator,createBottomTabNavigator,createAppContainer} from 'react-navigation';
 import Home from './src/home/Home';
 import Mine from './src/mine/Mine';
-
+import Category from './src/category/Category';
+import ShopCar from './src/shopcar/ShopCar';
 
 
 const instructions = Platform.select({
@@ -23,24 +24,26 @@ const instructions = Platform.select({
 
 type Props = {};
 
+const defaultOptions = {
+  headerStyle:{
+    backgroundColor:'#22339b',
+  },
+  
+  
+  headerBackTitle:null,
+  headerTitleStyle:{
+    fontWeight: '600',
+    color:'#fff',
+    fontSize:18,
+  }
+}
 
 const HomeStack = createStackNavigator({
   Home,
   
 },{
   initialRouteName:'Home',
-  defaultNavigationOptions:{
-    headerStyle:{
-      backgroundColor:'#22339b',
-    },
-    headerTitle:'首页',
-    headerBackTitle:null,
-    headerTitleStyle:{
-      fontWeight: '600',
-      color:'#fff',
-      fontSize:18,
-    }
-  }
+  defaultNavigationOptions:defaultOptions
 });
 
 const MineStack = createStackNavigator({
@@ -48,36 +51,78 @@ const MineStack = createStackNavigator({
   Mine
 },{
   initialRouteName:'Mine',
-  defaultNavigationOptions:{
-    headerStyle:{
-      backgroundColor:'#22339b',
-    },
-    headerTitle:'我的',
-    
-    headerBackTitle:null,
-    headerTitleStyle:{
-      fontWeight: '600',
-      color:'#fff',
-      fontSize:18,
-    }
-  }
+  defaultNavigationOptions:defaultOptions,
+});
+
+const CategoryStack= createStackNavigator({
+  Category,
+
+},{
+  initialRouteName:'Category',
+  defaultNavigationOptions:defaultOptions,
+});
+const ShopCarStack = createStackNavigator({
+  ShopCar,
+},{
+  initialRouteName:'ShopCar',
+  defaultNavigationOptions:defaultOptions,
 });
 
 const BottomNavigator = createBottomTabNavigator({
   Home:{
     screen:HomeStack,
-    tabBarLabel:'首页',
+    navigationOptions:{
+      tabBarLabel:'首页',
+      showLabel:true,
+      tabBarIcon:({tintColor,focused})=>(
+        <Image style={styles.tarBarIcon} source={focused?require('./images/main.png'):require('./images/main_un.png')}/> 
+      )
+    }
+  },
+  Category:{
+    screen:CategoryStack,
+    navigationOptions:{
+      tabBarLabel:'分类',
+      showLabel:true,
+      tabBarIcon:({tintColor,focused})=>(
+        <Image style={styles.tarBarIcon} 
+        source={focused?require('./images/category.png'):require('./images/category_un.png')}/>
+      )
+
+      
+    }
+  },
+  ShopCar:{
+    screen:ShopCarStack,
+    navigationOptions:{
+      tabBarLabel:'购物车',
+      showLabel:true,
+      tabBarIcon:({tintColor,focused})=>(
+        <Image style={styles.tarBarIcon} 
+        source={focused?require('./images/shop.png'):require('./images/shop_un.png')}/>
+      )
+
+      
+    }
   },
   Mine:{
     screen:MineStack,
-    tabBarLabel:'我的',
+    navigationOptions:{
+      tabBarLabel:'我的',
+      showLabel:true,
+      tabBarIcon:({tintColor,focused})=>(
+        <Image style={styles.tarBarIcon} source={focused?require('./images/mine.png'):require('./images/mine_un.png')}/> 
+      )
+    }
   }
 },{
  
   tabBarOptions:{
-    
-   
-    
+    labelStyle:{
+      fontSize:12,
+    },
+    activeTintColor:'#13227a',
+    inactiveTintColor:'#bfbfbf',
 
   }
 })
@@ -109,4 +154,8 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
+  tabBarIcon:{
+    width:20,
+    height:20,
+  }
 });
