@@ -13,7 +13,9 @@ import Home from './src/home/Home';
 import Mine from './src/mine/Mine';
 import Category from './src/category/Category';
 import ShopCar from './src/shopcar/ShopCar';
-
+import Login from './src/login/Login';
+import ForgetPassword from './src/login/ForgetPassword';
+import Color from './src/common/Color';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -26,20 +28,23 @@ type Props = {};
 
 const defaultOptions = {
   headerStyle:{
-    backgroundColor:'#22339b',
+    backgroundColor:Color.COLOR_MAIN_THEME,
+    
   },
   
-  
+  headerTintColor:Color.COLOR_COMMON_FONT,
   headerBackTitle:null,
   headerTitleStyle:{
     fontWeight: '600',
-    color:'#fff',
+    color:Color.COLOR_COMMON_FONT,
     fontSize:18,
   }
 }
 
 const HomeStack = createStackNavigator({
   Home,
+  Login,
+  ForgetPassword,
   
 },{
   initialRouteName:'Home',
@@ -121,12 +126,35 @@ const BottomNavigator = createBottomTabNavigator({
     labelStyle:{
       fontSize:12,
     },
-    activeTintColor:'#13227a',
+    activeTintColor:Color.COLOR_MAIN_THEME,
     inactiveTintColor:'#bfbfbf',
-
+    iconStyle:{
+      width:16,
+      height:16,
+    },
   }
 })
 
+HomeStack.navigationOptions = ({navigation})=>{
+  return {
+    tabBarVisible:navigation.state.index === 0,
+  } ;
+}
+CategoryStack.navigationOptions = ({navigation})=>{
+  return {
+    tabBarVisible:navigation.state.index === 0,
+  } ;
+}
+ShopCarStack.navigationOptions = ({navigation})=>{
+  return {
+    tabBarVisible:navigation.state.index === 0,
+  } ;
+}
+MineStack.navigationOptions = ({navigation})=>{
+  return {
+    tabBarVisible:navigation.state.index === 0,
+  } ;
+}
 const AppContainer = createAppContainer(BottomNavigator);
 
 export default class App extends Component<Props> {
@@ -155,7 +183,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   tabBarIcon:{
-    width:20,
-    height:20,
+    width:16,
+    height:16,
   }
 });
