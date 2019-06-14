@@ -1,62 +1,43 @@
 import React, { Component } from 'react';
-import { View, Text ,StyleSheet} from 'react-native';
-import Swiper from 'react-native-swiper';
+import { View, Text ,StyleSheet,FlatList} from 'react-native';
+
 import Color from '../common/Color';
+import MineItem from './mineView/MineItem';
+import MineHeader from './mineView/MineHeader';
 
 export default class Mine extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      data:['header','我的订单','我的收藏','我的购物车','售后服务','设置'],
     };
   }
 
-  changeSwiperIndex=(index)=>{
-    
+  static navigationOptions={
+    headerTitle:'我的',
+  }
+
+  logoutCallback=(text)=>{
+    this.props.navigation.push('Login');
+  }
+  renderItem({item,index}){
+    if (index===0) {
+      return (
+        <MineHeader data={item} callback={(text)=>this.logoutCallback()}></MineHeader>
+      )
+    }
+    return (
+      <MineItem title={item}></MineItem>
+    )
   }
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.swiperView}>
-
-        <Swiper  
-          showsButtons={false}
-          autoplay={true}
-          height={200}
-          bounces={true}
-          onIndexChanged={(index)=>this.changeSwiperIndex(index)}
-          >
-            <View style={styles.slide1}>
-              <Text style={styles.text}>Hello Swiper</Text>
-            </View>
-            <View style={styles.slide2}>
-              <Text style={styles.text}>Beautiful</Text>
-            </View>
-            <View style={styles.slide3}>
-              <Text style={styles.text}>And simple</Text>
-            </View>
-        </Swiper>
-        </View>
-
-        <View style={styles.noticeView}
-        >
-          <Swiper horizontal={false}
-          autoplay={true}
-          autoplayTimeout={2}
-          showsPagination={false}>
-            <View style={styles.notice}>
-              <Text>news1</Text>
-            </View>
-            <View style={styles.notice}>
-              <Text>news2 </Text>
-            </View>
-            <View style={styles.notice}>
-              <Text>news3</Text>
-            </View>
-          </Swiper>
-        </View>
-        
-
-        
+       
+      <FlatList data={this.state.data}
+      renderItem={this.renderItem.bind(this)}
+      keyExtractor={({item,index})=>index}
+      extraData={this.state.data}></FlatList>
       </View>
       
     );
@@ -68,49 +49,5 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor:Color.COLOR_VIEW_BAC,
   },
-  swiperView:{
-    height:200,
-   
-  },
   
-
-  slide1: {
-    height:200,
-   
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#9DD6EB',
-  },
-  slide2: {
-    height:200,
-    
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#97CAE5',
-  },
-  slide3: {
-    height:200,
-    
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#92BBD9',
-  },
-  text: {
-    color: '#fff',
-    fontSize: 30,
-    fontWeight: 'bold',
-  },
-  noticeView:{
-    height:60,
-   
-
-  },
-  notice:{
-    margin: 5,
-    borderRadius: 5,
-    flex: 1,
-    backgroundColor:'#fff',
-    alignItems: 'center',
-    justifyContent:'center',
-  }
 })

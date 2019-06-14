@@ -7,6 +7,8 @@ import Color from '../common/Color';
 import GoodsDetailInfo from './GoodsDetail/GoodsDetailInfo';
 import GoodsCount from './GoodsDetail/GoodsCount';
 import GoodsImages from './GoodsDetail/GoodsImages';
+import GoodsFooter from './GoodsDetail/GoodsFooter';
+import Toast,{DURATION} from 'react-native-easy-toast';
 
 export default class GoodsDetail extends Component {
     constructor(props) {
@@ -55,11 +57,21 @@ export default class GoodsDetail extends Component {
                 break;
         }
     }
+    footerBtnAction=(index)=>{
+        if (index === 0) {
+            this.refs.toast.show('添加到购物车');
+        }else{
+            this.refs.toast.show('立即购买');
+        }
+    }
     render() {
         return (
             <View style={styles.container}>
                 <FlatList data={this.state.data}
                 renderItem={this.renderItem.bind(this)}></FlatList>
+                <GoodsFooter callBack={(index)=>this.footerBtnAction(index)}></GoodsFooter>
+                <Toast ref='toast' position='center'
+                style={{backgroundColor:Color.COLOR_TOAST_BAC}}></Toast>
             </View>
         )
     }

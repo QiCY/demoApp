@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { View, Text ,FlatList,StyleSheet,TouchableHighlight} from 'react-native';
 import Toast,{DURATION} from 'react-native-easy-toast';
 import Color from '../common/Color';
+import RNStorage from '../common/RNStorage';
+import Main from './Main';
 
 
 export default class Home extends Component {
@@ -12,7 +14,19 @@ export default class Home extends Component {
     super(props);
     this.state = {
       data:['登录','忘记密码','轮播图','滑动删除','相册','商品详情'],
+      loginState:false,
     };
+
+    RNStorage.load({
+      key:'loginState',
+    }).then(ret=>{
+      if (!ret) {
+        this.props.navigation.push('Login');
+      }
+      
+    }).catch(error=>{
+
+    })
   }
 
   
@@ -39,7 +53,7 @@ export default class Home extends Component {
           this.props.navigation.push('ForgetPassword');
         break;
       case 2:
-        
+          this.props.navigation.push('Main');
         break;
       case 3:
         

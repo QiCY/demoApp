@@ -18,6 +18,9 @@ import ForgetPassword from './src/login/ForgetPassword';
 import Color from './src/common/Color';
 import GoodsDetail from './src/shopcar/GoodsDetail';
 
+import RNStorage from './src/common/RNStorage';
+import Main from './src/home/Main';
+
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
   android:
@@ -47,6 +50,7 @@ const HomeStack = createStackNavigator({
   Login,
   ForgetPassword,
   GoodsDetail,
+  Main,
   
 },{
   initialRouteName:'Home',
@@ -82,7 +86,8 @@ const BottomNavigator = createBottomTabNavigator({
       tabBarLabel:'首页',
       showLabel:true,
       tabBarIcon:({tintColor,focused})=>(
-        <Image style={styles.tarBarIcon} source={focused?require('./images/main.png'):require('./images/main_un.png')}/> 
+        <Image style={[{width: 24,height: 24},{tintColor: tintColor}]}
+         source={focused?require('./images/main.png'):require('./images/main_un.png')}/> 
       )
     }
   },
@@ -92,7 +97,7 @@ const BottomNavigator = createBottomTabNavigator({
       tabBarLabel:'分类',
       showLabel:true,
       tabBarIcon:({tintColor,focused})=>(
-        <Image style={styles.tarBarIcon} 
+        <Image style={[{width: 24,height: 24},{tintColor: tintColor}]}
         source={focused?require('./images/category.png'):require('./images/category_un.png')}/>
       )
 
@@ -105,7 +110,7 @@ const BottomNavigator = createBottomTabNavigator({
       tabBarLabel:'购物车',
       showLabel:true,
       tabBarIcon:({tintColor,focused})=>(
-        <Image style={styles.tarBarIcon} 
+        <Image style={[{width: 24,height: 24},{tintColor: tintColor}]} 
         source={focused?require('./images/shop.png'):require('./images/shop_un.png')}/>
       )
 
@@ -118,7 +123,9 @@ const BottomNavigator = createBottomTabNavigator({
       tabBarLabel:'我的',
       showLabel:true,
       tabBarIcon:({tintColor,focused})=>(
-        <Image style={styles.tarBarIcon} source={focused?require('./images/mine.png'):require('./images/mine_un.png')}/> 
+        <Image  
+        source={focused?require('./images/mine.png'):require('./images/mine_un.png')}
+        style={[{width: 24,height: 24},{tintColor: tintColor}]}/> 
       )
     }
   }
@@ -160,10 +167,25 @@ MineStack.navigationOptions = ({navigation})=>{
 const AppContainer = createAppContainer(BottomNavigator);
 
 export default class App extends Component<Props> {
+
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+      //  loginState:false,
+    }
+
+
+    
+  }
+  
   render() {
-    return (
-      <AppContainer />
-    );
+    
+      return (
+        <AppContainer />
+      );
+    
+    
   }
 }
 

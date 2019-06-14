@@ -50,12 +50,13 @@ const styles = StyleSheet.create({
   input:{
     marginLeft: 20,
     marginRight: 20,
-    fontSize: 18,
+    fontSize: 16,
     fontWeight:'400',
     height:44,
     borderWidth: 1,
+    paddingLeft:15,
     borderColor: 'rgba(0,0,0,0.1)',
-    borderRadius: 10,
+    borderRadius: 22,
   },
   username:{
     marginTop: 40,
@@ -92,7 +93,7 @@ const styles = StyleSheet.create({
     backgroundColor:'#24386c',
     height:44,
     justifyContent: 'center',
-    borderRadius: 10,
+    borderRadius: 22,
   },
   resetText:{
     color:'#fff',

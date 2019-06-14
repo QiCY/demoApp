@@ -4,11 +4,14 @@ import Toast, {DURATION} from 'react-native-easy-toast';
 import Loading from '../common/Loading';
 import HttpAPI from '../common/HttpAPI';
 import Color from '../common/Color';
+import RNStorage from '../common/RNStorage';
 
 const loginUrl = "https://program-testapi.yonghui.cn/usercenter/login?businessType=20";
 export default class Login extends Component {
     static navigationOptions = {
         headerTitle:'登录',
+        headerLeft:null,
+        
     }
   constructor(props) {
     super(props);
@@ -25,6 +28,12 @@ export default class Login extends Component {
     this.setState({showLoading:false});
     if (response.message === 'success') {
       this.refs.toast.show('登录成功');
+      RNStorage.save({
+        key:'loginState',
+        data:true,
+      });
+      this.props.navigation.navigate('Home');
+      
     }else{
       this.refs.toast.show(response.message);
     }
@@ -48,7 +57,8 @@ export default class Login extends Component {
     console.log(param);
     this.setState({showLoading:true});
     HttpAPI.post(loginUrl,param,(response)=>{
-      this.loginSuccess(response)
+      this.loginSuccess(response);
+
     });
 
 
@@ -95,12 +105,13 @@ const styles = StyleSheet.create({
   input:{
     marginLeft: 20,
     marginRight: 20,
-    fontSize: 18,
+    fontSize: 16,
     fontWeight:'400',
     height:44,
     borderWidth: 1,
     borderColor: 'rgba(0,0,0,0.1)',
-    borderRadius: 10,
+    borderRadius: 22,
+    paddingLeft: 15,
   },
   username:{
     marginTop: 60,
@@ -121,7 +132,7 @@ const styles = StyleSheet.create({
     marginTop: 40,
     height:44,
     backgroundColor: Color.COLOR_MAIN_THEME,
-    borderRadius: 10,
+    borderRadius: 22,
     
     alignItems: 'center',
   },

@@ -20,7 +20,7 @@ export default class GoodsImages extends Component {
                 {
                     this.state.data.map((item)=>{
                         return <ImageBackground 
-                        source={{uri:item}} style={{width:375,height:600}}></ImageBackground>
+                        source={{uri:item}} style={{width:'100%',height:675}}></ImageBackground>
                     })
                 }
             </View>
