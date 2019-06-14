@@ -16,6 +16,7 @@ import ShopCar from './src/shopcar/ShopCar';
 import Login from './src/login/Login';
 import ForgetPassword from './src/login/ForgetPassword';
 import Color from './src/common/Color';
+import GoodsDetail from './src/shopcar/GoodsDetail';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -45,6 +46,7 @@ const HomeStack = createStackNavigator({
   Home,
   Login,
   ForgetPassword,
+  GoodsDetail,
   
 },{
   initialRouteName:'Home',

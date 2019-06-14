@@ -3,6 +3,7 @@ import { View, Text ,FlatList,StyleSheet,TouchableHighlight} from 'react-native'
 import Toast,{DURATION} from 'react-native-easy-toast';
 import Color from '../common/Color';
 
+
 export default class Home extends Component {
   static navigationOptions = {
     headerTitle:'首页',
@@ -10,7 +11,7 @@ export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data:['登录','忘记密码','信控额度审核','应收账款','风控预警'],
+      data:['登录','忘记密码','轮播图','滑动删除','相册','商品详情'],
     };
   }
 
@@ -43,6 +44,9 @@ export default class Home extends Component {
       case 3:
         
         break;
+      case 5:
+        this.props.navigation.push('GoodsDetail');
+        break;
     
       default:
         break;
@@ -51,6 +55,7 @@ export default class Home extends Component {
   render() {
     return (
       <View>
+        
         <FlatList data={this.state.data} 
         renderItem={this.renderItem.bind(this)
           
@@ -63,6 +68,9 @@ export default class Home extends Component {
   }
 }
 const styles = StyleSheet.create({
+  swiper:{
+    height:100,
+  },
   item:{
     height:80,
     marginLeft: 20,

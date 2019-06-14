@@ -66,9 +66,9 @@ export default class ShopCar extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <FlatList data = {this.state.data}
+                <FlatList data ={this.state.data}
                 renderItem={this.renderItem.bind(this)}
-                keyExtractor={(item,index)=>index}
+                
                 extraData={this.state.data}
                 ></FlatList>
             </View>
