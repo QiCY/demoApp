@@ -7,7 +7,9 @@ export default class GoodsHeader extends Component {
       super(props)
     
       this.state = {
-         
+         data:['https://img.alicdn.com/imgextra/i1/356060330/O1CN01hVthqQ1EJBDq6qcQQ_!!0-item_pic.jpg_60x60q90.jpg',
+         'https://img.alicdn.com/imgextra/i3/356060330/O1CN01C6pruS1EJBEoVbxOt_!!356060330.jpg_60x60q90.jpg',
+         'https://img.alicdn.com/imgextra/i1/356060330/O1CN01mSycjI1EJBEnpYRr2_!!0-item_pic.jpg_430x430q90.jpg'],
       }
     }
     
@@ -15,15 +17,17 @@ export default class GoodsHeader extends Component {
         return (
             <View style={styles.container}>
                 <Swiper autoplay={true}>
-                    <View style={styles.itemView}>
-                        <Image style={{backgroundColor: '#333',flex: 1,}}></Image>
-                    </View>
-                    <View style={styles.itemView}>
-                        <Image style={{backgroundColor: '#744',flex: 1,}}></Image>
-                    </View>
-                    <View style={styles.itemView}>
-                        <Image style={{backgroundColor: '#858',flex: 1,}}></Image>
-                    </View>
+
+                    {
+                        this.state.data.map((item,index)=>{
+                            return <View style={styles.itemView}>
+                                        <Image style={{backgroundColor: '#333',flex: 1,}} 
+                                        source={{uri:item}}></Image>
+                                    </View>
+                        })
+                    }
+                    
+                    
                 </Swiper>
             </View>
         )
