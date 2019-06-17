@@ -16,7 +16,7 @@ export default class GoodsHeader extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Swiper autoplay={true}>
+                <Swiper autoplay={true} paginationStyle={{justifyContent:'flex-end'}}>
 
                     {
                         this.state.data.map((item,index)=>{

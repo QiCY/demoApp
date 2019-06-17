@@ -17,7 +17,7 @@ import Login from './src/login/Login';
 import ForgetPassword from './src/login/ForgetPassword';
 import Color from './src/common/Color';
 import GoodsDetail from './src/shopcar/GoodsDetail';
-
+import SearchResultVC from './src/home/SearchResultVC';
 import RNStorage from './src/common/RNStorage';
 import Main from './src/home/Main';
 
@@ -51,6 +51,7 @@ const HomeStack = createStackNavigator({
   ForgetPassword,
   GoodsDetail,
   Main,
+  SearchResultVC,
   
 },{
   initialRouteName:'Home',
@@ -67,6 +68,8 @@ const MineStack = createStackNavigator({
 
 const CategoryStack= createStackNavigator({
   Category,
+  Main,
+  SearchResultVC,
 
 },{
   initialRouteName:'Category',

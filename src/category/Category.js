@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
-import { Text, StyleSheet, View } from 'react-native'
+import { Text, StyleSheet, View ,StatusBar} from 'react-native'
 import ScrollbaleTabView,{ScrollableTabBar} from 'react-native-scrollable-tab-view';
 import ClassDetail from './ClassDetail';
 import Toast,{DURATION} from 'react-native-easy-toast';
 import Color from '../common/Color';
+import SearchHeader from '../home/homeView/SearchHeader';
+import {Header} from 'react-navigation'
 
 export default class Category extends Component {
     constructor(props) {
@@ -14,8 +16,24 @@ export default class Category extends Component {
          
       }
     }
-    static navigationOptions={
-        headerTitle:'分类',
+    static navigationOptions=({navigation})=>{
+        return {
+
+            headerTitle:'分类',
+            header:<View style={{height:Header.HEIGHT+20,justifyContent:'flex-end',backgroundColor: '#fff',}}>
+                <SearchHeader searchAction={()=>navigation.state.params.searchAction()}></SearchHeader>
+                </View>
+        }
+
+        
+       
+    }
+    
+    searchAction=()=>{
+        this.props.navigation.push('SearchResultVC');
+    }
+    componentDidMount() {
+        this.props.navigation.setParams({searchAction:this.searchAction});
     }
     
     changeTab=(object)=>{

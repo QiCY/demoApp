@@ -3,7 +3,7 @@ import { View, Text ,FlatList,StyleSheet,TouchableHighlight} from 'react-native'
 import Toast,{DURATION} from 'react-native-easy-toast';
 import Color from '../common/Color';
 import RNStorage from '../common/RNStorage';
-import Main from './Main';
+
 
 
 export default class Home extends Component {
